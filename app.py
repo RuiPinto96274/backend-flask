@@ -5,7 +5,7 @@ import numpy as np
 
 app = Flask(__name__)
 
-CORS(app)
+CORS(app, resources={r"/predict": {"origins": "https://water-prediction-ml.netlify.app"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 model = pickle.load(open('model.pkl', 'rb'))
 scaler = pickle.load(open('scaler.pkl', 'rb'))
@@ -22,7 +22,8 @@ def helloWorld():
 
 @app.route('/predict', methods=['POST', 'GET', 'OPTIONS'])
 def predict():
-    if request.method == "OPTIONS":  
+    if request.method == "OPTIONS":
+        print(request.headers)  
         response = jsonify({'message': 'CORS preflight response'})
     elif request.method == "POST":
         try:
