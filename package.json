@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "start": "gunicorn -b 0.0.0.0:8000 app:app"
-  },
-  "dependencies": {
-    "gunicorn": "21.2.0"
-  }
-}
