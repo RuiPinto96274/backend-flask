@@ -5,7 +5,7 @@ import numpy as np
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/predict": {"origins": "https://water-prediction-ml.netlify.app"}})
+CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 model = pickle.load(open('model.pkl', 'rb'))
 scaler = pickle.load(open('scaler.pkl', 'rb'))
@@ -40,9 +40,9 @@ def predict():
     else:
         raise RuntimeError("Weird - don't know how to handle method {}".format(request.method))
     
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add("Access-Control-Allow-Headers", "*")
-    response.headers.add("Access-Control-Allow-Methods", "*")
+    response.headers.add("Access-Control-Allow-Origin", "https://water-prediction-ml.netlify.app")
+    response.headers.add("Access-Control-Allow-Headers", "POST, GET, OPTIONS")
+    response.headers.add("Access-Control-Allow-Methods", "Content-Type")
     
     return response
 
