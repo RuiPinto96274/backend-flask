@@ -23,7 +23,6 @@ def helloWorld():
 @app.route('/predict', methods=['POST', 'GET', 'OPTIONS'])
 def predict():
     if request.method == "OPTIONS":
-        print(request.headers)  
         response = jsonify({'message': 'CORS preflight response'})
     elif request.method == "POST":
         try:
@@ -40,9 +39,9 @@ def predict():
     else:
         raise RuntimeError("Weird - don't know how to handle method {}".format(request.method))
     
-    response.headers.add("Access-Control-Allow-Origin", "https://water-prediction-ml.netlify.app")
-    response.headers.add("Access-Control-Allow-Headers", "POST, GET, OPTIONS")
-    response.headers.add("Access-Control-Allow-Methods", "Content-Type")
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Headers", "*")
+    response.headers.add("Access-Control-Allow-Methods", "*")
     
     return response
 
