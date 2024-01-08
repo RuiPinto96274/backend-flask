@@ -45,7 +45,7 @@ def predict():
     
     return response
 
-if __name__ == '__main__':
-    app.run(port=8000)
+#if __name__ == '__main__':
+    #app.run()
    
 #activate venv: venv\Scripts\activate
